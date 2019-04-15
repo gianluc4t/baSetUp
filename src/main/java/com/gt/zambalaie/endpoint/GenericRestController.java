@@ -1,5 +1,7 @@
 package com.gt.zambalaie.endpoint;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,10 @@ public class GenericRestController {
   
   private Logger logger = LoggerFactory.getLogger(this.getClass());
   
-  @GetMapping("/zanzara")
+  @GetMapping("/zanzara" )
+  @ApiOperation(value = "this methis is colled zanzara",
+     notes = "zanzara is a italian word to say mosquito!",
+     response = GenericObjDto.class) 
   public GenericObjDto zanzara() {
     logger.info("zanzara");
     GenericObj result = genericService.getObj("bubu");

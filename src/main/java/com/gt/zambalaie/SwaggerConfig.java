@@ -1,13 +1,13 @@
 package com.gt.zambalaie;
 
+import java.io.FileInputStream;
+import java.util.Properties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import com.google.common.base.Predicates;
 import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.paths.RelativePathProvider;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -17,32 +17,47 @@ public class SwaggerConfig {
 
 
   @Bean
-  public Docket api() {
-    return new Docket(DocumentationType.SWAGGER_2).select()
-        .apis(Predicates.not(RequestHandlerSelectors.basePackage("org.springframework.boot")))
-        .paths(PathSelectors.any()).build();
-  }
-
-  
-  /*@Bean
   public Docket postsApi() {
-      return new Docket(DocumentationType.SWAGGER_2)
-              .groupName("public-api")
-              .apiInfo(apiInfo())
-              .select()
-              .build();
+    return new Docket(DocumentationType.SWAGGER_2).groupName("public-api").apiInfo(apiInfo())
+        .select().build().pathProvider(new RelativePathProvider(null) {
+          @Override
+          public String getApplicationBasePath() {
+              return "/zanzariera";
+          }
+      });
   }
-
 
   private ApiInfo apiInfo() {
-      return new ApiInfoBuilder()
-              .title("SpringMVC GT API")
-              .description("SpringMVC description ")
-              .termsOfServiceUrl("http://xvideos.com")
-              .license("Abaixa a License Version 2.0")
-              .licenseUrl("https://github.com/springfox/springfox/blob/master/LICENSE")
-              .version("2.0")
-              .build();
-  }*/
+    String version = "azizz";
+    try {
+      
+      String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+
+      Properties appProps = new Properties();
+      appProps.load(new FileInputStream(rootPath + "application.properties"));
+
+      version = appProps.getProperty("app.vers");
+      
+      System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx " + version);
+      
+      Package mainPackage = App.class.getPackage();
+      String version2 = mainPackage.getImplementationVersion();
+      String groupId = mainPackage.getName();
+      String artifactId = mainPackage.getImplementationTitle();
+
+      System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx " + version2);
+      System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx " + groupId);
+      System.out.println("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx " + artifactId);
+      
+      
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    return new ApiInfoBuilder().title("AStig apana RREA").description("tie uvulia a tavulin"+version)
+        .termsOfServiceUrl("http://hantsy.blogspot.com").license("cri cri ")
+        .licenseUrl("https://hantsy.com/springfox/springfox/blob/master/LICENSE").version(version)
+        .build();
+  }
 
 }
