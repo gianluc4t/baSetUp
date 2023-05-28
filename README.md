@@ -1,3 +1,4 @@
+[![Board Status](https://dev.azure.com/gianluc4t/b33c5a65-3c6c-420c-ab5e-cbbe64b94149/124eb064-fdad-4a98-b40a-cfa7110facb7/_apis/work/boardbadge/769d8c1e-7c51-4b94-8d5d-b1af4b689ac1)](https://dev.azure.com/gianluc4t/b33c5a65-3c6c-420c-ab5e-cbbe64b94149/_boards/board/t/124eb064-fdad-4a98-b40a-cfa7110facb7/Microsoft.RequirementCategory)
 # Template project
 ____
 
